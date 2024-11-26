@@ -1,0 +1,13 @@
+#3
+
+STACK: MERN w/ AWS
+
+Since there is a lot of data & it is relational, I would use MongoDB for the DB w/ 2 collections to start: one for
+current user data & one for storing audit logs.
+To handle performance consideration, we can add an indexing & an updatedAt field for faster data retrieval & also
+archive old data to say an AWS EC2/S3 bucket as
+to not over-seed the DB; shard'ing logs monthly will reduce query performance concerns as the data grows.
+The Express middleware will expedite recording incoming responses/requests and logging & monitoring as well.
+To "future-proof" the schema models in the event of new data fields for the user, adding a metadata tag will allow
+fields to be added dynamically & not require a refactor which would
+not be ideal.
